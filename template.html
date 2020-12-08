@@ -4,6 +4,7 @@
   <title></title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta  name="author" content="Kedein Rodriguez Gatica" />
   <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
   <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
   <!--This one seems to work all the time, but really small on ipad-->
@@ -34,170 +35,10 @@
     </hgroup>
   </slide>
 
-  <slide>
-    <hgroup>
-      <h2>1 What is Active Record?</h2>
-    </hgroup>
-    <article>
-      <p>Active Record is the <span class="red">M</span> in MVC - The model</p>
-      <ul class="build">
-        <li>Is the layer of the system responsible for representing business data and logic.</li>
-        <li>Active Record facilitates the creation and use of business objects whose data requires persistent storage to a database.</li>
-        <li>It is an implementation of the Active Record pattern which itself is a description of an Object Relational Mapping system.</li>
-      </ul>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>1.1 The Active Record Pattern</h2>
-    </hgroup>
-    <article>
-      <p> In Active Record, objects carry both persistent data and behavior which operates on that data. </p>
-      <p>Active Record takes the opinion that ensuring data access logic as part of the object will educate users of that object on how to write to and read from the database.</p>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>1.2 Object Relational Mapping</h2>
-    </hgroup>
-    <article>
-      <p>ORM, is a technique that connects the rich objects of an application to tables in a relational database management system. </p>
-      <p>Using ORM, the properties and relationships of the objects in an application can be easily stored and retrieved from a database without writing SQL statements directly and with less overall database access code.</p>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>1.3 Active Record as an ORM Framework</h2>
-    </hgroup>
-    <article>
-      <p>Active Record gives us several mechanisms, the most important being the ability to: </p>
-      <ul class="build">
-        <li>Represent models and their data.</li>
-        <li>Represent associations between these models.</li>
-        <li>Represent inheritance hierarchies through related models.</li>
-        <li>Validate models before they get persisted to the database.</li>
-        <li>Perform database operations in an object-oriented fashion.</li>
-      </ul>
-      </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>2 Convention over Configuration in Active Record</h2>
-    </hgroup>
-    <article>
-      <p>When writing applications using other programming languages or frameworks, it may be necessary to write a lot of configuration code. </p>
-      <p>However, if you follow the conventions adopted by Rails, you'll need to write very little configuration (in some cases no configuration at all) when creating Active Record models.</p>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>2.1 Naming Conventions</h2>
-    </hgroup>
-    <article>
-      <ul class="build">
-        <li>Model Class - Singular with the first letter of each word capitalized (e.g., BookClub).</li>
-        <li>Database Table - Plural with underscores separating words (e.g., book_clubs).</li>
-      </ul>
-      <table>
-        <tr>
-          <th>Model / Class</th><th>Table / Schema</th>
-        </tr>
-        <tr>
-          <td>Article</td><td>articles</td>
-        </tr>
-        <tr>
-          <td>LineItem</td><td>line_items</td>
-        </tr>
-        <tr>
-          <td>Deer</td><td>deers</td>
-        </tr>
-        <tr>
-          <td>Mouse</td><td>mice</td>
-        </tr>
-        <tr>
-          <td>Person</td><td>people</td>
-        </tr>
-      </table>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>2.2 Schema Conventions</h2>
-    </hgroup>
-    <article>
-      <p>Active Record uses naming conventions for the columns in database tables, depending on the purpose of these columns.</p>
-      <ul class="build">
-        <li>Foreign keys
-          <p>singularized_table_name_id (e.g., item_id, order_id)</p>
-        </li>
-        <li>Primary keys
-          <p>This column will be automatically created.</p>
-          <p>(bigint for PostgreSQL and MySQL, integer for SQLite)</p>
-          <p>|bigint |8 bytes | large-range integer	| -9223372036854775808 to 9223372036854775807|</p>
-        </li>
-      </ul>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>3 Creating Active Record Models</h2>
-    </hgroup>
-    <article>
-      <p>It is very easy to create Active Record models. All you have to do is to subclass the ApplicationRecord class and you're good to go:</p>
-      <iframe
-        src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=2x&wm=false&code=class%2520Product%2520%253C%2520ApplicationRecord%250Aend"
-        style="width: 828px; height: 423px; border:0; transform: scale(1); overflow:hidden;"
-        sandbox="allow-scripts allow-same-origin">
-      </iframe>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-    </hgroup>
-    <article>
-      <p>Suppose that the products table was created using an SQL (or one of its extensions) statement like:</p>
-      <iframe
-        src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=2x&wm=false&code=CREATE%2520TABLE%2520products%2520%28%250A%2520%2520%2520id%2520int%2811%29%2520NOT%2520NULL%2520auto_increment%252C%250A%2520%2520%2520name%2520varchar%28255%29%252C%250A%2520%2520%2520PRIMARY%2520KEY%2520%2520%28id%29%250A%29%253B"
-        style="width: 870px; height: 478px; border:0; transform: scale(1); overflow:hidden;"
-        sandbox="allow-scripts allow-same-origin">
-      </iframe>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-    </hgroup>
-    <article>
-      <p>Schema above declares a table with two columns: id and name. Each row of this table represents a certain product with these two parameters. Thus, you would be able to write code like the following:</p>
-      <iframe
-        src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=2x&wm=false&code=p%2520%253D%2520Product.new%250Ap.name%2520%253D%2520%2522Some%2520Book%2522%250Aputs%2520p.name%2520%2523%2520%2522Some%2520Book%2522"
-        style="width: 661px; height: 442px; border:0; transform: scale(1); overflow:hidden;"
-        sandbox="allow-scripts allow-same-origin">
-      </iframe>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>4 Overriding the Naming Conventions</h2>
-    </hgroup>
-    <article>
-      <p>What if you need to follow a different naming convention or need to use your Rails application with a legacy database? No problem, you can easily override the default conventions.</p>
-    </article>
-  </slide>
-
   <slide class="segue dark nobackground">
     <aside class="gdbar"><img src="images/rails-icon.png"></aside>
     <hgroup class="auto-fadein">
-      <h2>5 CRUD: Reading and Writing Data</h2>
+      <h2>CRUD: Reading and Writing Data</h2>
       <h3>Create, Read, Update and Delete</h3>
       <p>Active Record automatically creates methods to allow an application to read and manipulate data stored within its tables.</p>
     </hgroup>
@@ -205,7 +46,7 @@
 
   <slide>
     <hgroup>
-      <h2>5.1 Create</h2>
+      <h2>1 Create</h2>
     </hgroup>
     <article>
       <p>The <span class="blue">create</span> method call will create and save a new record into the database:</p>
@@ -233,7 +74,7 @@
 
   <slide>
     <hgroup>
-      <h2>5.2 Read</h2>
+      <h2>2 Read</h2>
     </hgroup>
     <article>
       <p>Active Record provides a rich API for accessing data within a database.</p>
@@ -247,7 +88,7 @@
 
   <slide>
     <hgroup>
-      <h2>5.3 Update</h2>
+      <h2>3 Update</h2>
     </hgroup>
     <article>
       <p>Once an Active Record object has been retrieved, its attributes can be modified and it can be saved to the database.</p>
@@ -274,7 +115,7 @@
 
   <slide>
     <hgroup>
-      <h2>5.4 Delete</h2>
+      <h2>4 Delete</h2>
     </hgroup>
     <article>
       <p>Likewise, once retrieved an Active Record object can be destroyed which removes it from the database.</p>
@@ -299,128 +140,12 @@
     </article>
   </slide>
 
-  <slide>
-    <hgroup>
-      <h2>6 Validations</h2>
-    </hgroup>
-    <article>
-      <p>When writing applications using other programming languages or frameworks, it may be necessary to write a lot of configuration code. </p>
-      <p>However, if you follow the conventions adopted by Rails, you'll need to write very little configuration (in some cases no configuration at all) when creating Active Record models.</p>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>7 Callbacks</h2>
-    </hgroup>
-    <article>
-      <p>When writing applications using other programming languages or frameworks, it may be necessary to write a lot of configuration code. </p>
-      <p>However, if you follow the conventions adopted by Rails, you'll need to write very little configuration (in some cases no configuration at all) when creating Active Record models.</p>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>8 Migrations</h2>
-    </hgroup>
-    <article>
-      <p>When writing applications using other programming languages or frameworks, it may be necessary to write a lot of configuration code. </p>
-      <iframe
-        src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=4x&wm=false&code=class%2520CreatePublications%2520%253C%2520ActiveRecord%253A%253AMigration%255B5.0%255D%250A%2520%2520def%2520change%250A%2520%2520%2520%2520create_table%2520%253Apublications%2520do%2520%257Ct%257C%250A%2520%2520%2520%2520%2520%2520t.string%2520%253Atitle%250A%2520%2520%2520%2520%2520%2520t.text%2520%253Adescription%250A%2520%2520%2520%2520%2520%2520t.references%2520%253Apublication_type%250A%2520%2520%2520%2520%2520%2520t.integer%2520%253Apublisher_id%250A%2520%2520%2520%2520%2520%2520t.string%2520%253Apublisher_type%250A%2520%2520%2520%2520%2520%2520t.boolean%2520%253Asingle_issue%250A%2520%250A%2520%2520%2520%2520%2520%2520t.timestamps%250A%2520%2520%2520%2520end%250A%2520%2520%2520%2520add_index%2520%253Apublications%252C%2520%253Apublication_type_id%250A%2520%2520end%250Aend"
-        style="width: 614px; height: 462px; border:0; transform: scale(1); overflow:hidden;"
-        sandbox="allow-scripts allow-same-origin">
-      </iframe>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>8 Migrations</h2>
-    </hgroup>
-    <article>
-      <p>When writing applications using other programming languages or frameworks, it may be necessary to write a lot of configuration code. </p>
-      <iframe
-        src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=4x&wm=false&code=rails%2520db%253Amigrate"
-        style="width: 685px; height: 205px; border:0; transform: scale(1); overflow:hidden;"
-        sandbox="allow-scripts allow-same-origin">
-      </iframe>
-      <iframe
-        src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=4x&wm=false&code=%253D%253D%2520%2520CreateArticles%253A%2520migrating%2520%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%250A--%2520create_table%28%253Aarticles%29%250A%2520%2520%2520-%253E%25200.0019s%250A%253D%253D%2520%2520CreateArticles%253A%2520migrated%2520%280.0020s%29%2520%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D"
-        style="width: 714px; height: 297px; border:0; transform: scale(1); overflow:hidden;"
-        sandbox="allow-scripts allow-same-origin">
-      </iframe>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Slide with Bullets that Build</h2>
-      <h3>Subtitle Placeholder</h3>
-    </hgroup>
-    <article>
-      <p>A list where items build:</p>
-      <ul class="build">
-        <li>Pressing 'h' highlights code snippets</li>
-        <li>Pressing 'p' toggles speaker notes (if they're on the current slide)</li>
-        <li>Pressing 'f' toggles fullscreen viewing</li>
-        <li>Pressing 'w' toggles widescreen</li>
-        <li>Pressing 'o' toggles overview mode</li>
-        <li>Pressing 'ESC' toggles off these goodies</li>
-      </ul>
-      <p>Another list, but items fade as they build:</p>
-      <ul class="build fade">
-        <li>Hover over me!</li>
-        <li>Hover over me!</li>
-        <li>Hover over me!</li>
-      </ul>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Slide Styles</h2>
-    </hgroup>
-    <article class="smaller">
-      <div class="columns-2">
-        <ul>
-          <li class="red">class="red"</li>
-          <li class="red2">class="red2"</li>
-          <li class="red3">class="red3"</li>
-          <li class="blue">class="blue"</li>
-          <li class="blue2">class="blue2"</li>
-          <li class="blue3">class="blue3"</li>
-          <li class="green">class="green"</li>
-          <li class="green2">class="green2"</li>
-        </ul>
-        <ul>
-          <li class="green3">class="green3"</li>
-          <li class="yellow">class="yellow"</li>
-          <li class="yellow2">class="yellow2"</li>
-          <li class="yellow3">class="yellow3"</li>
-          <li class="gray">class="gray"</li>
-          <li class="gray2">class="gray2"</li>
-          <li class="gray3">class="gray3"</li>
-          <li class="gray4">class="gray4"</li>
-        </ul>
-      </div>
-      <div class="centered" style="margin-top:2em">
-        I am centered text with a <button>Button</button> and <button disabled>Disabled</button> button.
-      </div>
-    </article>
-  </slide>
-
-  <slide class="fill nobackground" style="background-image: url(images/sky.jpg)">
-    <hgroup>
-      <h2 class="white">Full Image (with Optional Header)</h2>
-    </hgroup>
-    <footer class="source white">www.flickr.com/photos/25797459@N06/5438799763/</footer>
-  </slide>
-
-
   <slide class="thank-you-slide segue nobackground">
     <aside class="gdbar right"><img src="images/rails-icon.png"></aside>
     <article class="flexbox vleft auto-fadein">
-      <h2>&lt;Thank You!&gt;</h2>
+      <h2>
+        <p>Thank You 😼</p>
+      </h2>
     </article>
     <p class="auto-fadein" data-config-contact>
       <!-- populated from slide_config.json -->
