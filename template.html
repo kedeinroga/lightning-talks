@@ -39,7 +39,7 @@
       <h2>1 What is Active Record?</h2>
     </hgroup>
     <article>
-      <p>Active Record is the M in MVC - The model</p>
+      <p>Active Record is the <span class="red">M</span> in MVC - The model</p>
       <ul class="build">
         <li>Is the layer of the system responsible for representing business data and logic.</li>
         <li>Active Record facilitates the creation and use of business objects whose data requires persistent storage to a database.</li>
@@ -208,8 +208,26 @@
       <h2>5.1 Create</h2>
     </hgroup>
     <article>
-      <p>When writing applications using other programming languages or frameworks, it may be necessary to write a lot of configuration code. </p>
-      <p>However, if you follow the conventions adopted by Rails, you'll need to write very little configuration (in some cases no configuration at all) when creating Active Record models.</p>
+      <p>The <span class="blue">create</span> method call will create and save a new record into the database:</p>
+      <iframe
+        src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=4x&wm=false&code=user%2520%253D%2520User.create%28name%253A%2520%2522David%2522%252C%2520occupation%253A%2520%2522Code%2520Artist%2522%29"
+        style="width: 656px; height: 505px; border:0; transform: scale(1); overflow:hidden;"
+        sandbox="allow-scripts allow-same-origin">
+      </iframe>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+    </hgroup>
+    <article>
+      <p>Using the <span class="blue">new</span> method, an object can be instantiated without being saved:</p>
+      <iframe
+        src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=4x&wm=false&code=user%2520%253D%2520User.new%250Auser.name%2520%253D%2520%2522David%2522%250Auser.occupation%2520%253D%2520%2522Code%2520Artist%2522"
+        style="width: 611px; height: 242px; border:0; transform: scale(1); overflow:hidden;"
+        sandbox="allow-scripts allow-same-origin">
+      </iframe>
+      <p>A call to <span class="blue">user.save</span> will commit the record to the database.</p>
     </article>
   </slide>
 
@@ -218,8 +236,12 @@
       <h2>5.2 Read</h2>
     </hgroup>
     <article>
-      <p>When writing applications using other programming languages or frameworks, it may be necessary to write a lot of configuration code. </p>
-      <p>However, if you follow the conventions adopted by Rails, you'll need to write very little configuration (in some cases no configuration at all) when creating Active Record models.</p>
+      <p>Active Record provides a rich API for accessing data within a database.</p>
+      <iframe
+        src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=4x&wm=false&code=%2523%2520return%2520a%2520collection%2520with%2520all%2520users%250Ausers%2520%253D%2520User.all%250A%250A%2523%2520return%2520the%2520first%2520user%250Auser%2520%253D%2520User.first%250A%250A%2523%2520return%2520the%2520first%2520user%2520named%2520David%250Adavid%2520%253D%2520User.find_by%28name%253A%2520%27David%27%29%250A%250A%2523%2520find%2520all%2520users%2520named%2520David%2520who%2520are%2520Code%2520Artists%2520and%2520sort%2520by%2520created_at%2520in%2520reverse%2520chronological%2520order%250Ausers%2520%253D%2520User.where%28name%253A%2520%27David%27%252C%2520occupation%253A%2520%27Code%2520Artist%27%29.order%28created_at%253A%2520%253Adesc%29"
+        style="width: 725px; height: 426px; border:0; transform: scale(1); overflow:hidden;"
+        sandbox="allow-scripts allow-same-origin">
+      </iframe>
     </article>
   </slide>
 
@@ -228,8 +250,25 @@
       <h2>5.3 Update</h2>
     </hgroup>
     <article>
-      <p>When writing applications using other programming languages or frameworks, it may be necessary to write a lot of configuration code. </p>
-      <p>However, if you follow the conventions adopted by Rails, you'll need to write very little configuration (in some cases no configuration at all) when creating Active Record models.</p>
+      <p>Once an Active Record object has been retrieved, its attributes can be modified and it can be saved to the database.</p>
+      <iframe
+        src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=4x&wm=false&code=user%2520%253D%2520User.find_by%28name%253A%2520%27David%27%29%250Auser.name%2520%253D%2520%27Dave%27%250Auser.save"
+        style="width: 437px; height: 242px; border:0; transform: scale(1); overflow:hidden;"
+        sandbox="allow-scripts allow-same-origin">
+      </iframe>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+    </hgroup>
+    <article>
+      <p>A shorthand for this is to use a hash mapping attribute names to the desired value, like so:</p>
+      <iframe
+        src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=4x&wm=false&code=user%2520%253D%2520User.find_by%28name%253A%2520%27David%27%29%250Auser.update%28name%253A%2520%27Dave%27%29"
+        style="width: 437px; height: 223px; border:0; transform: scale(1); overflow:hidden;"
+        sandbox="allow-scripts allow-same-origin">
+      </iframe>
     </article>
   </slide>
 
@@ -238,8 +277,25 @@
       <h2>5.4 Delete</h2>
     </hgroup>
     <article>
-      <p>When writing applications using other programming languages or frameworks, it may be necessary to write a lot of configuration code. </p>
-      <p>However, if you follow the conventions adopted by Rails, you'll need to write very little configuration (in some cases no configuration at all) when creating Active Record models.</p>
+      <p>Likewise, once retrieved an Active Record object can be destroyed which removes it from the database.</p>
+      <iframe
+        src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=4x&wm=false&code=user%2520%253D%2520User.find_by%28name%253A%2520%27David%27%29%250Auser.destroy"
+        style="width: 437px; height: 323px; border:0; transform: scale(1); overflow:hidden;"
+        sandbox="allow-scripts allow-same-origin">
+      </iframe>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+    </hgroup>
+    <article>
+      <p>If you'd like to delete several records in bulk, you may use <span class="blue">destroy_by</span> or <span class="blue">destroy_all</span> method:</p>
+      <iframe
+        src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=4x&wm=false&code=%2523%2520find%2520and%2520delete%2520all%2520users%2520named%2520David%250AUser.destroy_by%28name%253A%2520%27David%27%29%250A%2520%250A%2523%2520delete%2520all%2520users%250AUser.destroy_all"
+        style="width: 479px; height: 278px; border:0; transform: scale(1); overflow:hidden;"
+        sandbox="allow-scripts allow-same-origin">
+      </iframe>
     </article>
   </slide>
 
@@ -322,221 +378,6 @@
 
   <slide>
     <hgroup>
-      <h2>Slide with (Smaller Font)</h2>
-    </hgroup>
-    <article class="smaller">
-      <ul>
-        <li>All <a href="http://google.com">links</a> open in new tabs.</li>
-        <li>To change that this, add <code>target="_self"</code> to the link.</li>
-      </ul>
-    </article>
-  </slide>
-
-  <slide hidden>
-    Hidden slides are left out of the presentation.
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Code Slide (with Subtitle Placeholder)</h2>
-      <h3>Subtitle Placeholder</h3>
-    </hgroup>
-    <article>
-      <p>Press 'h' to highlight important sections of code (wrapped in <code>&lt;b&gt;</code>).</p>
-      <pre class="prettyprint" data-lang="javascript">
-&lt;script type='text/javascript'&gt;
-  // Say hello world until the user starts questioning
-  // the meaningfulness of their existence.
-  function helloWorld(world) {
-    <b>for (var i = 42; --i &gt;= 0;) {
-      alert('Hello ' + String(world));
-    }</b>
-  }
-&lt;/script&gt;
-</pre>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Code Slide (Smaller Font)</h2>
-    </hgroup>
-    <article class="smaller">
-      <pre class="prettyprint" data-lang="javascript">
-// Say hello world until the user starts questioning
-// the meaningfulness of their existence.
-function helloWorld(world) {
-  for (var i = 42; --i &gt;= 0;) {
-    alert('Hello ' + String(world));
-  }
-}
-</pre>
-<pre class="prettyprint" data-lang="css">
-&lt;style&gt;
-  p { color: pink }
-  b { color: blue }
-&lt;/style&gt;
-</pre>
-<pre class="prettyprint" data-lang="html">
-&lt;!DOCTYPE html>
-&lt;html>
-&lt;head>
-  &lt;title>My Awesome Page&lt;/title>
-&lt;/head>
-&lt;body>
-  &lt;p&gt;Hello world&lt;/p&gt;
-&lt;body>
-&lt;/html>
-</pre>
-    </article>
-  </slide>
-
-  <slide>
-    <aside class="note">
-      <section>
-        <ul>
-          <li>Point I wanted to make #1</li>
-          <li>Point I wanted to make #2</li>
-          <li>Point I wanted to make #3</li>
-          <li>Example <a href="#">link</a> in notes.</li>
-        </ul>
-        <p><b>Remember to say this tag line!</b></p>
-      </section>
-    </aside>
-    <hgroup>
-      <h2>Slide with Speaker Notes</h2>
-    </hgroup>
-    <article>
-      <p>Press 'p' to toggle speaker notes.</p>
-    </article>
-  </slide>
-
-  <slide>
-    <aside class="note">
-      <section>
-        <ul>
-          <li>See this amazing link: <a href="http://www.google.com">link</a>.</li>
-        </ul>
-        <p><b>Remember to say this tag line!</b></p>
-      </section>
-    </aside>
-    <hgroup>
-      <h2>Presenter Mode</h2>
-    </hgroup>
-    <article>
-      <p>Add <code><a href="?presentme=true" target="_self">?presentme=true</a></code> to the URL to enabled presenter mode.
-      This setting is sticky, meaning refreshing the page will persist presenter
-      mode.</p>
-      <p>Hit <code><a href="?presentme=false" target="_self">?presentme=false</a></code> to disable presenter mode.</p>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Slide with Image</h2>
-    </hgroup>
-    <article>
-      <img src="images/chart.png" class="reflect" alt="Description" title="Description">
-      <footer class="source">source: place source info here</footer>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Slide with Image (Centered horz/vert)</h2>
-    </hgroup>
-    <article class="flexbox vcenter">
-      <img src="images/barchart.png" alt="Description" title="Description">
-      <footer class="source">source: place source info here</footer>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Table Option A</h2>
-      <h3>Subtitle Placeholder</h3>
-    </hgroup>
-    <article>
-      <table>
-        <tr>
-          <th></th><th>Column 1</th><th>Column 2</th><th>Column 3</th><th>Column 4</th>
-        </tr>
-        <tr>
-          <td>Row 1</td><td>placeholder</td><td class="highlight">placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <td>Row 2</td><td>placeholder</td><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <td>Row 3</td><td>placeholder</td><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <td>Row 4</td><td>placeholder</td><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <td>Row 5</td><td>placeholder</td><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-      </table>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Table Option A (Smaller Text)</h2>
-      <h3>Subtitle Placeholder</h3>
-    </hgroup>
-    <article class="smaller">
-      <table>
-        <tr>
-          <th></th><th>Column 1</th><th>Column 2</th><th>Column 3</th><th>Column 4</th>
-        </tr>
-        <tr>
-          <td>Row 1</td><td>placeholder</td><td class="highlight">placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <td>Row 2</td><td>placeholder</td><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <td>Row 3</td><td>placeholder</td><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <td>Row 4</td><td>placeholder</td><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <td>Row 5</td><td>placeholder</td><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-      </table>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Table Option B</h2>
-      <h3>Subtitle Placeholder</h3>
-    </hgroup>
-    <article>
-      <table class="rows">
-        <tr>
-          <th>Header 1</th><td>placeholder</td><td class="highlight">placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <th>Header 2</th><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <th>Header 3</th><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <th>Header 4</th><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <th>Header 5</th><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-      </table>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
       <h2>Slide Styles</h2>
     </hgroup>
     <article class="smaller">
@@ -568,14 +409,6 @@ function helloWorld(world) {
     </article>
   </slide>
 
-  <slide class="segue dark nobackground">
-    <aside class="gdbar"><img src="images/rails-icon.png"></aside>
-    <hgroup class="auto-fadein">
-      <h2>Segue Slide</h2>
-      <h3>Subtitle Placeholder</h3>
-    </hgroup>
-  </slide>
-
   <slide class="fill nobackground" style="background-image: url(images/sky.jpg)">
     <hgroup>
       <h2 class="white">Full Image (with Optional Header)</h2>
@@ -583,33 +416,6 @@ function helloWorld(world) {
     <footer class="source white">www.flickr.com/photos/25797459@N06/5438799763/</footer>
   </slide>
 
-  <slide class="segue dark quote nobackground">
-    <aside class="gdbar right bottom"><img src="images/rails-icon.png"></aside>
-    <article class="flexbox vleft auto-fadein">
-      <q>
-        This is an example of quote text.
-      </q>
-      <div class="author">
-        Name<br>
-        Company
-      </div>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Slide with Iframe</h2>
-    </hgroup>
-    <article>
-      <iframe data-src="http://www.google.com/doodle4google/resources/history.html"></iframe>
-    </article>
-  </slide>
-
-  <slide>
-    <article>
-      <iframe data-src="http://www.google.com/doodle4google/resources/history.html"></iframe>
-    </article>
-  </slide>
 
   <slide class="thank-you-slide segue nobackground">
     <aside class="gdbar right"><img src="images/rails-icon.png"></aside>
