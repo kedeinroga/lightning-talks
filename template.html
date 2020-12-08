@@ -1,11 +1,3 @@
-<!--
-Google IO 2012/2013 HTML5 Slide Template
-
-Authors: Eric Bidelman <ebidel@gmail.com>
-         Luke Mahé <lukem@google.com>
-
-URL: https://code.google.com/p/io-2012-slides
--->
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,20 +36,52 @@ URL: https://code.google.com/p/io-2012-slides
 
   <slide>
     <hgroup>
-      <h2>Slide with Bullets</h2>
+      <h2>1 What is Active Record?</h2>
     </hgroup>
     <article>
+      <p>Active Record is the M in MVC - The model</p>
       <ul>
-        <li>Titles are formatted as Open Sans with bold applied and font size is set at 45</li>
-        <li>Title capitalization is title case
-          <ul>
-            <li>Subtitle capitalization is title case</li>
-          </ul>
-        </li>
-        <li>Subtitle capitalization is title case</li>
-        <li>Titles and subtitles should never have a period at the end</li>
+        <li>Is the layer of the system responsible for representing business data and logic.</li>
+        <li>Active Record facilitates the creation and use of business objects whose data requires persistent storage to a database.</li>
+        <li>It is an implementation of the Active Record pattern which itself is a description of an Object Relational Mapping system.</li>
       </ul>
     </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>1.1 The Active Record Pattern</h2>
+    </hgroup>
+    <article>
+      <p> In Active Record, objects carry both persistent data and behavior which operates on that data. </p>
+      <p>Active Record takes the opinion that ensuring data access logic as part of the object will educate users of that object on how to write to and read from the database.</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>1.2 Object Relational Mapping</h2>
+    </hgroup>
+    <article>
+      <p>ORM, is a technique that connects the rich objects of an application to tables in a relational database management system. </p>
+      <p>Using ORM, the properties and relationships of the objects in an application can be easily stored and retrieved from a database without writing SQL statements directly and with less overall database access code.</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>1.3 Active Record as an ORM Framework</h2>
+    </hgroup>
+    <article>
+      <p>Active Record gives us several mechanisms, the most important being the ability to: </p>
+      <ul>
+        <li>Represent models and their data.</li>
+        <li>Represent associations between these models.</li>
+        <li>Represent inheritance hierarchies through related models.</li>
+        <li>Validate models before they get persisted to the database.</li>
+        <li>Perform database operations in an object-oriented fashion.</li>
+      </ul>
+      </article>
   </slide>
 
   <slide>
