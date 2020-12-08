@@ -86,6 +86,218 @@
 
   <slide>
     <hgroup>
+      <h2>2 Convention over Configuration in Active Record</h2>
+    </hgroup>
+    <article>
+      <p>When writing applications using other programming languages or frameworks, it may be necessary to write a lot of configuration code. </p>
+      <p>However, if you follow the conventions adopted by Rails, you'll need to write very little configuration (in some cases no configuration at all) when creating Active Record models.</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>2.1 Naming Conventions</h2>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>Model Class - Singular with the first letter of each word capitalized (e.g., BookClub).</li>
+        <li>Database Table - Plural with underscores separating words (e.g., book_clubs).</li>
+      </ul>
+      <table>
+        <tr>
+          <th>Model / Class</th><th>Table / Schema</th>
+        </tr>
+        <tr>
+          <td>Article</td><td>articles</td>
+        </tr>
+        <tr>
+          <td>LineItem</td><td>line_items</td>
+        </tr>
+        <tr>
+          <td>Deer</td><td>deers</td>
+        </tr>
+        <tr>
+          <td>Mouse</td><td>mice</td>
+        </tr>
+        <tr>
+          <td>Person</td><td>people</td>
+        </tr>
+      </table>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>2.2 Schema Conventions</h2>
+    </hgroup>
+    <article>
+      <p>Active Record uses naming conventions for the columns in database tables, depending on the purpose of these columns.</p>
+      <ul class="build">
+        <li>Foreign keys
+          <p>singularized_table_name_id (e.g., item_id, order_id)</p>
+        </li>
+        <li>Primary keys
+          <p>This column will be automatically created.</p>
+          <p>(bigint for PostgreSQL and MySQL, integer for SQLite)</p>
+          <p>|bigint |8 bytes | large-range integer	| -9223372036854775808 to 9223372036854775807|</p>
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>3 Creating Active Record Models</h2>
+    </hgroup>
+    <article>
+      <p>It is very easy to create Active Record models. All you have to do is to subclass the ApplicationRecord class and you're good to go:</p>
+      <iframe
+        src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=2x&wm=false&code=class%2520Product%2520%253C%2520ApplicationRecord%250Aend"
+        style="width: 828px; height: 423px; border:0; transform: scale(1); overflow:hidden;"
+        sandbox="allow-scripts allow-same-origin">
+      </iframe>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+    </hgroup>
+    <article>
+      <p>Suppose that the products table was created using an SQL (or one of its extensions) statement like:</p>
+      <iframe
+        src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=2x&wm=false&code=CREATE%2520TABLE%2520products%2520%28%250A%2520%2520%2520id%2520int%2811%29%2520NOT%2520NULL%2520auto_increment%252C%250A%2520%2520%2520name%2520varchar%28255%29%252C%250A%2520%2520%2520PRIMARY%2520KEY%2520%2520%28id%29%250A%29%253B"
+        style="width: 870px; height: 478px; border:0; transform: scale(1); overflow:hidden;"
+        sandbox="allow-scripts allow-same-origin">
+      </iframe>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+    </hgroup>
+    <article>
+      <p>Schema above declares a table with two columns: id and name. Each row of this table represents a certain product with these two parameters. Thus, you would be able to write code like the following:</p>
+      <iframe
+        src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=2x&wm=false&code=p%2520%253D%2520Product.new%250Ap.name%2520%253D%2520%2522Some%2520Book%2522%250Aputs%2520p.name%2520%2523%2520%2522Some%2520Book%2522"
+        style="width: 661px; height: 442px; border:0; transform: scale(1); overflow:hidden;"
+        sandbox="allow-scripts allow-same-origin">
+      </iframe>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>4 Overriding the Naming Conventions</h2>
+    </hgroup>
+    <article>
+      <p>What if you need to follow a different naming convention or need to use your Rails application with a legacy database? No problem, you can easily override the default conventions.</p>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/rails-icon.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>5 CRUD: Reading and Writing Data</h2>
+      <h3>Create, Read, Update and Delete</h3>
+      <p>Active Record automatically creates methods to allow an application to read and manipulate data stored within its tables.</p>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>5.1 Create</h2>
+    </hgroup>
+    <article>
+      <p>When writing applications using other programming languages or frameworks, it may be necessary to write a lot of configuration code. </p>
+      <p>However, if you follow the conventions adopted by Rails, you'll need to write very little configuration (in some cases no configuration at all) when creating Active Record models.</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>5.2 Read</h2>
+    </hgroup>
+    <article>
+      <p>When writing applications using other programming languages or frameworks, it may be necessary to write a lot of configuration code. </p>
+      <p>However, if you follow the conventions adopted by Rails, you'll need to write very little configuration (in some cases no configuration at all) when creating Active Record models.</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>5.3 Update</h2>
+    </hgroup>
+    <article>
+      <p>When writing applications using other programming languages or frameworks, it may be necessary to write a lot of configuration code. </p>
+      <p>However, if you follow the conventions adopted by Rails, you'll need to write very little configuration (in some cases no configuration at all) when creating Active Record models.</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>5.4 Delete</h2>
+    </hgroup>
+    <article>
+      <p>When writing applications using other programming languages or frameworks, it may be necessary to write a lot of configuration code. </p>
+      <p>However, if you follow the conventions adopted by Rails, you'll need to write very little configuration (in some cases no configuration at all) when creating Active Record models.</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>6 Validations</h2>
+    </hgroup>
+    <article>
+      <p>When writing applications using other programming languages or frameworks, it may be necessary to write a lot of configuration code. </p>
+      <p>However, if you follow the conventions adopted by Rails, you'll need to write very little configuration (in some cases no configuration at all) when creating Active Record models.</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>7 Callbacks</h2>
+    </hgroup>
+    <article>
+      <p>When writing applications using other programming languages or frameworks, it may be necessary to write a lot of configuration code. </p>
+      <p>However, if you follow the conventions adopted by Rails, you'll need to write very little configuration (in some cases no configuration at all) when creating Active Record models.</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>8 Migrations</h2>
+    </hgroup>
+    <article>
+      <p>When writing applications using other programming languages or frameworks, it may be necessary to write a lot of configuration code. </p>
+      <iframe
+        src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=4x&wm=false&code=class%2520CreatePublications%2520%253C%2520ActiveRecord%253A%253AMigration%255B5.0%255D%250A%2520%2520def%2520change%250A%2520%2520%2520%2520create_table%2520%253Apublications%2520do%2520%257Ct%257C%250A%2520%2520%2520%2520%2520%2520t.string%2520%253Atitle%250A%2520%2520%2520%2520%2520%2520t.text%2520%253Adescription%250A%2520%2520%2520%2520%2520%2520t.references%2520%253Apublication_type%250A%2520%2520%2520%2520%2520%2520t.integer%2520%253Apublisher_id%250A%2520%2520%2520%2520%2520%2520t.string%2520%253Apublisher_type%250A%2520%2520%2520%2520%2520%2520t.boolean%2520%253Asingle_issue%250A%2520%250A%2520%2520%2520%2520%2520%2520t.timestamps%250A%2520%2520%2520%2520end%250A%2520%2520%2520%2520add_index%2520%253Apublications%252C%2520%253Apublication_type_id%250A%2520%2520end%250Aend"
+        style="width: 614px; height: 462px; border:0; transform: scale(1); overflow:hidden;"
+        sandbox="allow-scripts allow-same-origin">
+      </iframe>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>8 Migrations</h2>
+    </hgroup>
+    <article>
+      <p>When writing applications using other programming languages or frameworks, it may be necessary to write a lot of configuration code. </p>
+      <iframe
+        src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=4x&wm=false&code=rails%2520db%253Amigrate"
+        style="width: 685px; height: 205px; border:0; transform: scale(1); overflow:hidden;"
+        sandbox="allow-scripts allow-same-origin">
+      </iframe>
+      <iframe
+        src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=4x&wm=false&code=%253D%253D%2520%2520CreateArticles%253A%2520migrating%2520%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%250A--%2520create_table%28%253Aarticles%29%250A%2520%2520%2520-%253E%25200.0019s%250A%253D%253D%2520%2520CreateArticles%253A%2520migrated%2520%280.0020s%29%2520%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D%253D"
+        style="width: 714px; height: 297px; border:0; transform: scale(1); overflow:hidden;"
+        sandbox="allow-scripts allow-same-origin">
+      </iframe>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
       <h2>Slide with Bullets that Build</h2>
       <h3>Subtitle Placeholder</h3>
     </hgroup>
